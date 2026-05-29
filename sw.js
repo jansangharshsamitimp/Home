@@ -1,10 +1,10 @@
-const CACHE = 'jss-mp-v4';
+const CACHE = 'jss-mp-v5';
 const FILES = [
-  '/Home/',
-  '/Home/index.html',
-  '/Home/manifest.json',
-  '/Home/icon-192.png',
-  '/Home/icon-512.png'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 self.addEventListener('install', e => {
@@ -20,11 +20,11 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  if (e.request.url.includes('facebook.com') || 
+  if (e.request.url.includes('facebook.com') ||
       e.request.url.includes('connect.facebook') ||
       e.request.url.includes('fonts.googleapis.com') ||
       e.request.url.includes('fonts.gstatic.com')) return;
   e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/Home/index.html')))
+    caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/index.html')))
   );
 });
